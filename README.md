@@ -6,7 +6,7 @@ Based on http://www.dpriver.com/pp/sqlformat.htm
 It will format the given SQL. 
 By default, the formatted result will be copied into clipboard. (Thanks for this stack overflow post http://stackoverflow.com/a/30810322/1216961)
 
-Next step, extract SQL from Java string.
+Extract SQL from Java string.
 
 
 ##How I run it:

@@ -4,9 +4,15 @@ window.addEventListener("load", function(e) {
     //dialog.showModal();
     
     var input_query = document.querySelector('#input').value;
-    console.log(input_query);
+    //console.log(input_query);
+    
+    input_query = normalized(input_query);
+    //console.log(input_query);
+
+    console.log(`processed input query: ${input_query}`);
+
     input_query = encodeURIComponent(input_query);
-    console.log(input_query);
+    //console.log(input_query);
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'http://www.gudusoft.com/format.php', true);
@@ -25,6 +31,14 @@ window.addEventListener("load", function(e) {
   });
 
 });
+
+
+
+function normalized(str){
+  str = str.replace(/\"|\+|\;/g, '');
+  return str;
+}
+
 
 
 //from http://stackoverflow.com/a/30810322/1216961
