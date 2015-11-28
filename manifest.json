@@ -1,6 +1,6 @@
 {
-  "name": "Hello World!",
-  "description": "My first Chrome App.",
+  "name": "SQL Formatter (for Java)",
+  "description": "Format SQL. Based on http://www.dpriver.com/pp/sqlformat.htm. Enhanced for Java developer.",
   "version": "0.1",
   "manifest_version": 2,
   "app": {
@@ -8,5 +8,8 @@
       "scripts": ["background.js"]
     }
   },
-  "icons": { "16": "calculator-16.png", "128": "calculator-128.png" }
+  "icons": { "16": "calculator-16.png", "128": "calculator-128.png" },
+  "permissions": [
+    "http://www.gudusoft.com/"
+  ]
 }
