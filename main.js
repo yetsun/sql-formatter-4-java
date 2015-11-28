@@ -1,36 +1,50 @@
 window.addEventListener("load", function(e) {
   var dialog = document.querySelector('#dialog1');
   document.querySelector('#format').addEventListener("click", function(evt) {
-    //dialog.showModal();
-    
-    var input_query = document.querySelector('#input').value;
-    //console.log(input_query);
-    
-    input_query = normalized(input_query);
-    //console.log(input_query);
-
-    console.log(`processed input query: ${input_query}`);
-
-    input_query = encodeURIComponent(input_query);
-    //console.log(input_query);
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://www.gudusoft.com/format.php', true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-    xhr.onload = function(e) {
-      //console.log(this.response);
-      var obj = JSON.parse(this.response);
-      //console.log(obj.rspn_formatted_sql);
-      document.querySelector('#output').innerHTML = obj.rspn_formatted_sql;
-      copyTextToClipboard(obj.rspn_formatted_sql);
-    };
-
-    xhr.send("rqst_input_sql=" + input_query);
-
+    format();
   });
-
 });
+
+
+window.addEventListener("load", function(e) {
+  var dialog = document.querySelector('#dialog1');
+  document.querySelector('#format-2-java').addEventListener("click", function(evt) {
+    format('java');
+  });
+});
+
+function format(output_format){
+  var input_query = document.querySelector('#input').value;
+  //console.log(input_query);
+  
+  input_query = normalized(input_query);
+  //console.log(input_query);
+
+  console.log(`processed input query: ${input_query}`);
+
+  input_query = encodeURIComponent(input_query);
+  //console.log(input_query);
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'http://www.gudusoft.com/format.php', true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  xhr.onload = function(e) {
+    //console.log(this.response);
+    var obj = JSON.parse(this.response);
+    //console.log(obj.rspn_formatted_sql);
+    document.querySelector('#output').innerHTML = obj.rspn_formatted_sql;
+    copyTextToClipboard(obj.rspn_formatted_sql);
+  };
+
+  var params = "rqst_input_sql=" + input_query;
+
+  if(output_format === 'java'){
+    params += "&rqst_output_fmt=java";
+  }
+
+  xhr.send(params);
+}
 
 
 
